@@ -32,7 +32,7 @@ nomelabel.pack(padx=10, pady=20)
 # Adicionando botões à sidebar
 botoes_textos = [
     ("Inquilinos", inquilinos),
-    ("Imóveis", casas),
+    ("Imóveis", imoveis()),
     ("Pagamentos", pagamentos)
     ]
 
