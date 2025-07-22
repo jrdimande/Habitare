@@ -5,5 +5,6 @@ class Inquilino:
         self.contacto = contacto
         self.data_de_entrada = data_de_entrada
         self.casa = casa
+        self.pagamentos = []
 
 

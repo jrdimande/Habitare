@@ -31,7 +31,7 @@ def InquilinosView(parent):
             return
 
         # Adiciona o inquilino no controlador e salva os dados
-        InquilinoController.adicionar_inquilino(nome, contacto, hoje.isoformat(), imovel)
+        InquilinoController.adicionar_inquilino(nome, contacto, hoje, imovel)
         ultimo = InquilinoController.inquilinos[-1]  # Recupera o último inquilino adicionado
         dump(InquilinoController)  # Salva no JSON
 
