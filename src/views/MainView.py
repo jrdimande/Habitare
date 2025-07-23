@@ -1,5 +1,6 @@
 import tkinter as tk
 from InquilinosView import InquilinosView
+from ImovelView import ImoveisView
 
 root = tk.Tk()
 root.title("Habitare")
@@ -13,8 +14,9 @@ def inquilinos():
 def pagamentos():
     pass
 
+
 def imoveis():
-    pass
+    ImoveisView(root)
 
 # Config sidebar
 sidebar = tk.Frame(root, bg="#2C3E50", width=200)
@@ -32,7 +34,7 @@ nomelabel.pack(padx=10, pady=20)
 # Adicionando botões à sidebar
 botoes_textos = [
     ("Inquilinos", inquilinos),
-    ("Imóveis", imoveis()),
+    ("Imóveis", imoveis),
     ("Pagamentos", pagamentos)
     ]
 

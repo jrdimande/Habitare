@@ -138,7 +138,7 @@ def InquilinosView(parent):
     nomelabel = tk.Label(sidebar, text="Área Inquilino", bg="#2C3E50", font=("Verdana", 15, "bold"), fg="#E0E0E0")
     nomelabel.pack(padx=10, pady=20)
 
-    # Tabela com os inquilinos
+    # Tabela com os inquilinos (Treeview)
     colunas = ("ID", "Nome", "Contacto", "Imóvel", "Entrada")
     tree = ttk.Treeview(root, columns=colunas, show="headings")
     for col in colunas:
