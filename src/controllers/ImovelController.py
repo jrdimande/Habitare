@@ -36,6 +36,28 @@ class ImovelController:
             else:
                 imovel.estado = False
 
+    def imoveis_disponiveis(self):
+        " Retorna o número de imóveis disponíveis "
+        contador = 0
+
+        for imovel in self.imoveis:
+            if imovel.estado == False:
+                contador  += 1
+        return contador
+
+
+    def imoveis_ocupados(self):
+        " Retorna o número de imóveis ocupados "
+        contador = 0
+
+        for imovel in self.imoveis:
+            if imovel.estado == True:
+                contador += 1
+
+        return contador
+
+
+
 
 
 
