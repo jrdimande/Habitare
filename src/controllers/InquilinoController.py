@@ -15,16 +15,14 @@ class InquilinoController:
 
     def buscar_inquilino(self, id):
         """ Busca e retorna o inquilino com o ID especificado """
-        if validar_id(id):
-            for inquilino in self.inquilinos:
-                if inquilino.id == id:
-                    return inquilino
+        for inquilino in self.inquilinos:
+            if inquilino.id == id:
+                return inquilino
 
     def remover_inquilino(self, id):
         """ Remove o inquilino com o ID especificado """
-        if validar_id(id):
-            inquilino = self.buscar_inquilino(id)
-            self.inquilinos.remove(inquilino)
+        inquilino = self.buscar_inquilino(id)
+        self.inquilinos.remove(inquilino)
 
     def atualizar_inquilino(self,id, nome, contacto, casa):
         """ Atualiza os atributos do inquilino com o ID especificado """
