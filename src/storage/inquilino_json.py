@@ -13,7 +13,7 @@ def dump(inc):
                   "nome" : inquilino.nome,
                   "contacto" : inquilino.contacto,
                   "data_de_entrada" : inquilino.data_de_entrada,
-                  "casa" : inquilino.casa
+                  "imovel" : inquilino.casa
                   }
         dados["inquilinos"].append(actual)
 

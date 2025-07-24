@@ -209,7 +209,7 @@ def InquilinosView(parent):
                 dados["inquilinos"][i]["nome"],
                 dados["inquilinos"][i]["contacto"],
                 dados["inquilinos"][i]["data_de_entrada"],
-                dados["inquilinos"][i]["casa"]
+                dados["inquilinos"][i]["imovel"]
             )
             inquilino = InquilinoController.inquilinos[i]
             tree.insert("", "end", values=(inquilino.id, inquilino.nome, inquilino.contacto, inquilino.casa, inquilino.data_de_entrada))
