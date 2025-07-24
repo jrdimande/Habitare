@@ -204,12 +204,12 @@ def InquilinosView(parent):
     # Função para carregar os dados salvos no JSON e preencher o Treeview
     def update_treeview():
         dados = load()
-        for i in range(len(dados["Inquilinos"])):
+        for i in range(len(dados["inquilinos"])):
             InquilinoController.adicionar_inquilino(
-                dados["Inquilinos"][i]["nome"],
-                dados["Inquilinos"][i]["contacto"],
-                dados["Inquilinos"][i]["data_de_entrada"],
-                dados["Inquilinos"][i]["casa"]
+                dados["inquilinos"][i]["nome"],
+                dados["inquilinos"][i]["contacto"],
+                dados["inquilinos"][i]["data_de_entrada"],
+                dados["inquilinos"][i]["casa"]
             )
             inquilino = InquilinoController.inquilinos[i]
             tree.insert("", "end", values=(inquilino.id, inquilino.nome, inquilino.contacto, inquilino.casa, inquilino.data_de_entrada))
