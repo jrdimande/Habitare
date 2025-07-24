@@ -4,11 +4,12 @@ def validar_inquilino(nome, contacto, data_de_entrada):
         return True
     return False
 
-def validar_id(id):
-    """ Validadar ID's"""
-    if id > 0:
-        return True
-    return False
+
+# def validar_id(id):
+#     """ Validadar ID's"""
+#     if id > 0:
+#         return True
+#     return False
 
 def validar_imovel(endereco, preco, tipo):
     """ Validar imóveis"""

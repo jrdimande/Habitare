@@ -1,5 +1,6 @@
 from src.models.Inquilino import Inquilino
-from src.utils.validators import validar_inquilino, validar_id
+from src.utils.validators import validar_inquilino
+from src.utils.idCreator import gerar_id
 class InquilinoController:
     def __init__(self):
         self.inquilinos = []
@@ -7,7 +8,7 @@ class InquilinoController:
     def adicionar_inquilino(self, nome, contacto, data_de_entrada, casa):
         """ Adiciona um novo inquilino à lista de inquilinos, se for válido """
         if validar_inquilino(nome, contacto, data_de_entrada):
-            id = len(self.inquilinos) + 1                     # <- essa lógica é temporária ksks3
+            id = gerar_id(nome)
             inquilino = Inquilino(id, nome, contacto, data_de_entrada, casa)
             self.inquilinos.append(inquilino)
 

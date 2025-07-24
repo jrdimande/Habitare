@@ -3,7 +3,7 @@ from src.controllers.ImovelController import ImovelController
 
 def dump(ImovelController):
     "Salvar dados em arquivo JSON"
-    ImovelController = ImovelController()
+    ImovelController = ImovelController
     filename = "imoveis.json"
 
     dados = {"imoveis" : [] }

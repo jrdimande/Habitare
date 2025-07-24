@@ -1,5 +1,6 @@
 from src.models.Imovel import Imovel
-from src.utils.validators import validar_imovel, validar_id
+from src.utils.validators import validar_imovel
+from src.utils.idCreator import gerar_id
 
 class ImovelController:
     def __init__(self):
@@ -9,22 +10,20 @@ class ImovelController:
         """" Adiciona um novo imóvel à lista, se for válido"""
 
         if validar_imovel(endereco, preco, tipo):
-            id = len(self.imoveis) + 1                 # <- lógica provisória para ID
+            id = gerar_id(endereco)                # <- lógica provisória para ID
             imovel = Imovel(id, endereco, preco, tipo)
             self.imoveis.append(imovel)
 
     def buscar_imovel(self, id):
         """ Busca e retorna o imóvel com o ID especificado"""
-        if validar_id(id):
-            for imovel in self.imoveis:
-                if imovel.id == id:
-                    return imovel
+        for imovel in self.imoveis:
+            if imovel.id == id:
+                return imovel
 
     def remover_imovel(self, id):
         """ Remove o imóvel com o ID especificado"""
-        if validar_id(id):
-            imovel = self.buscar_imovel(id)
-            self.imoveis.remove(imovel)
+        imovel = self.buscar_imovel(id)
+        self.imoveis.remove(imovel)
 
     def atualizar_estado(self, id):
         """" Atualiza o estado do imóvel com o ID especificado """
@@ -33,8 +32,10 @@ class ImovelController:
 
             if imovel.estado == False:
                 imovel.estado = True
+
             else:
                 imovel.estado = False
+
 
 
 

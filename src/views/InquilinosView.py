@@ -8,7 +8,7 @@ def InquilinosView(parent):
     import tkinter as tk
     from tkinter import ttk
     from tkinter import messagebox
-    from src.utils.datatime import hoje  # Data atual (automatizada)
+    from src.utils.tempo import hoje  # Data atual (automatizada)
     from src.utils.validators import validar_inquilino  # Validação dos dados inseridos
     from src.storage.inquilino_json import dump, load  # Métodos de persistência JSON
 
@@ -60,7 +60,7 @@ def InquilinosView(parent):
                     valores = tree.item(item, "values")
                     id_inquilino = valores[0]
                     tree.delete(item)  # Remove da interface
-                    InquilinoController.remover_inquilino(int(id_inquilino))  # Remove do controlador
+                    InquilinoController.remover_inquilino(str(id_inquilino))  # Remove do controlador
                     dump(InquilinoController)  # Atualiza o JSON
                     messagebox.showinfo("Removido", "Inquilino removido com sucesso", parent=root)
         else:
@@ -91,7 +91,7 @@ def InquilinosView(parent):
         # Janela secundária para atualizar dados
         janela_update = tk.Toplevel(root)
         janela_update.title("Atualizar Inquilino")
-        janela_update.geometry("300x200")
+        janela_update.geometry("300x250")
         janela_update.resizable(False, False)
         janela_update.configure(bg="white")
 

@@ -22,7 +22,7 @@ def dump(inc):
 
 def load():
     """ Carregar os dados no arquivo .json """
-    filename = "inquilino.json"
+    filename = "inquilinos.json"
     try:
         with open(filename, "r") as f:
             inquilinos = json.load(f)

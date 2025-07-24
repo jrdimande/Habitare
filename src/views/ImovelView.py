@@ -6,6 +6,7 @@ def ImoveisView(parent):
     import tkinter as tk
     from tkinter import ttk
     from tkinter import messagebox
+    from src.storage.imovel_json import dump, load
 
     root = tk.Toplevel(parent)
     root.title("Gestão de Imóveis")
@@ -31,7 +32,9 @@ def ImoveisView(parent):
 
         ImovelController.adicionar_imovel(endereco, preco_float, tipo)
         ultimo = ImovelController.imoveis[-1]
-        tree.insert("", "end", values=(ultimo.id, endereco, preco_float, tipo))
+        estado = "Ocupado" if ultimo.estado else "Disponível"
+        tree.insert("", "end", values=(ultimo.id, endereco, preco_float, tipo, estado))
+        dump(ImovelController)
         messagebox.showinfo("Sucesso", "Imóvel cadastrado com sucesso", parent=root)
 
         enderecoEntry.delete(0, tk.END)
@@ -47,6 +50,7 @@ def ImoveisView(parent):
                 for item in selecionado:
                     id_imovel = int(tree.item(item, "values")[0])
                     ImovelController.remover_imovel(id_imovel)
+                    dump(ImovelController)
                     tree.delete(item)
                 messagebox.showinfo("Removido", "Imóvel removido com sucesso", parent=root)
         else:
@@ -85,11 +89,11 @@ def ImoveisView(parent):
     tk.Button(frame_form, text="Cancelar", width=20, command=cancelar, bg="#7F8C8D", fg="white").place(x=425, y=60)
 
     # Tabela
-    colunas = ("ID", "Endereço", "Preço", "Tipo")
+    colunas = ("ID", "Endereço", "Preço", "Tipo", "Estado")
     tree = ttk.Treeview(root, columns=colunas, show="headings")
     for col in colunas:
         tree.heading(col, text=col)
-        tree.column(col, anchor="center", width=155)
+        tree.column(col, anchor="center", width=130)
     tree.pack(side="bottom", pady=40, padx=40)
 
     scrollbar = ttk.Scrollbar(root, orient="vertical", command=tree.yview)
@@ -105,3 +109,18 @@ def ImoveisView(parent):
     menu_popup = tk.Menu(root, tearoff=0)
     menu_popup.add_command(label="Remover", command=remover_imovel)
     tree.bind("<Button-3>", mostrar_menu)
+
+    def update_treeview():
+        dados = load()
+        for i in range(len(dados["imoveis"])):
+            ImovelController.adicionar_imovel(
+                dados["imoveis"][i]["endereco"],
+                dados["imoveis"][i]["preco"],
+                dados["imoveis"][i]["tipo"]
+            )
+            imovel = ImovelController.imoveis[i]
+            estado = "Ocupado" if imovel.estado else "Disponível"
+            tree.insert("", "end", values=(imovel.id, imovel.endereco, imovel.preco, imovel.tipo, estado))
+
+
+    update_treeview()
