@@ -14,7 +14,7 @@ def gerar_id(nome):
 
 def gerar_pay_id():
     " Cria IDs para pagamentos"
-    return f"PAY-{agora.strptime('%Y%m%d%H%M')}-{random.randint(100, 999)}"
+    return f"PAY-{agora.strptime('%Y%m%d%H%M%S')}-{random.randint(100, 999)}"
 
 
 
