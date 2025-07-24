@@ -83,7 +83,7 @@ def InquilinosView(parent):
         item = selecionado[0]
         valores = tree.item(item, "values")
 
-        id_inquilino = int(valores[0])
+        id_inquilino = str(valores[0])
         nome_antigo = valores[1]
         contacto_antigo = valores[2]
         casa_antiga = valores[3]
