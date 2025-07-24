@@ -10,7 +10,7 @@ def InquilinosView(parent):
     from tkinter import messagebox
     from src.utils.datatime import hoje  # Data atual (automatizada)
     from src.utils.validators import validar_inquilino  # Validação dos dados inseridos
-    from src.storage.JsonStorage import dump, load  # Métodos de persistência JSON
+    from src.storage.inquilino_json import dump, load  # Métodos de persistência JSON
 
     # Janela principal da view de inquilinos
     root = tk.Toplevel(parent)

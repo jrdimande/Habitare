@@ -4,5 +4,4 @@ class Pagamento:
         self.id_inquilino = id_inquilino
         self.valor = valor
         self.data_de_pagamento = data_de_pagamento
-        self.pagamentos = []
 

@@ -2,7 +2,7 @@ import json
 from src.controllers.InquilinoController import InquilinoController
 
 def dump(inc):
-    """ Salvar os dados no arquivo .json"""
+    """ Salvar os dados no arquivo .json """
     InquilinoController = inc
     filename = "dados.json"
 
@@ -21,7 +21,7 @@ def dump(inc):
         json.dump(dados, f, indent=4)
 
 def load():
-    """ Carregar os dados no arquivo .json"""
+    """ Carregar os dados no arquivo .json """
     try:
         with open("dados.json", "r") as f:
             inquilinos = json.load(f)
