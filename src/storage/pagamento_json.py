@@ -4,7 +4,7 @@ from src.controllers.PagamentoController import PagamentoController
 def dump(PagamentoController):
     """ Salvar os dados no arquivo .json """
     PagamentoController = PagamentoController()
-    filename = "dados.json"
+    filename = "pagamentos.json"
 
     dados = {"Pagamentos" : []}
 
@@ -22,7 +22,7 @@ def dump(PagamentoController):
 
 def load():
     """ Carregar os dados n arquivo .json"""
-    filename = "dados.json"
+    filename = "pagamentos.json"
     try:
         with open(filename, "r") as f:
             pagamentos = json.load(f)
