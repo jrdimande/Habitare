@@ -5,7 +5,7 @@ import random
 
 
 def gerar_id(nome):
-    " Cria IDs para inquilinos, imóveis... "
+    " Cria IDs para inquilinos "
     partes = nome.strip().upper().split()
     iniciais = ''.join(p[0] for p in partes)
     aleatorio = str(uuid.uuid4())[:4]
