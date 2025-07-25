@@ -1,4 +1,5 @@
 from src.controllers.ImovelController import ImovelController
+from src.utils.idCreator import gerar_imo_id
 
 ImovelController = ImovelController()
 
@@ -30,7 +31,8 @@ def ImoveisView(parent):
             messagebox.showerror("Erro", "Preço deve ser numérico", parent=root)
             return
 
-        ImovelController.adicionar_imovel(endereco, preco_float, tipo)
+        id_imovel = gerar_imo_id()
+        ImovelController.adicionar_imovel(id_imovel, endereco, preco_float, tipo)
         ultimo = ImovelController.imoveis[-1]
         estado = "Ocupado" if ultimo.estado else "Disponível"
         tree.insert("", "end", values=(ultimo.id, endereco, preco_float, tipo, estado))
@@ -48,7 +50,7 @@ def ImoveisView(parent):
             confirmado = messagebox.askyesno("Remover", "Deseja remover este imóvel?", parent=root)
             if confirmado:
                 for item in selecionado:
-                    id_imovel = int(tree.item(item, "values")[0])
+                    id_imovel = str(tree.item(item, "values")[0])
                     ImovelController.remover_imovel(id_imovel)
                     dump(ImovelController)
                     tree.delete(item)
@@ -114,6 +116,7 @@ def ImoveisView(parent):
         dados = load()
         for i in range(len(dados["imoveis"])):
             ImovelController.adicionar_imovel(
+                dados["imoveis"][i]["id"],
                 dados["imoveis"][i]["endereco"],
                 dados["imoveis"][i]["preco"],
                 dados["imoveis"][i]["tipo"]

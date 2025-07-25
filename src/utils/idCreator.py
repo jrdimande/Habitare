@@ -16,6 +16,10 @@ def gerar_pay_id():
     " Cria IDs para pagamentos"
     return f"PAY-{agora.strptime('%Y%m%d%H%M%S')}-{random.randint(100, 999)}"
 
+def gerar_imo_id():
+    aleatorio = str(uuid.uuid4())[:4]
+    return f"IMO-{aleatorio}"
+
 
 
 

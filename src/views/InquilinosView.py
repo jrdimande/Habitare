@@ -14,7 +14,7 @@ def InquilinosView(parent):
 
     # Janela principal da view de inquilinos
     root = tk.Toplevel(parent)
-    root.title("GCA")
+    root.title("Gestão de inquilinos")
     root.geometry("920x600")
     root.configure(bg="white")
     root.resizable(False, False)

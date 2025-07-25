@@ -12,9 +12,9 @@ def dump(ImovelController):
         actual = {
             "id" : imovel.id,
             "endereco" : imovel.endereco,
-            "estado" : imovel.estado,
             "preco" : imovel.preco,
-            "tipo" : imovel.tipo
+            "tipo" : imovel.tipo,
+            "estado": imovel.estado
 
         }
         dados["imoveis"].append(actual)

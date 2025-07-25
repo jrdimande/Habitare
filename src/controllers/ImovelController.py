@@ -1,16 +1,17 @@
 from src.models.Imovel import Imovel
 from src.utils.validators import validar_imovel
-from src.utils.idCreator import gerar_id
+from src.utils.idCreator import gerar_imo_id
 
 class ImovelController:
     def __init__(self):
         self.imoveis = []
 
-    def adicionar_imovel(self, endereco, preco, tipo):
+    def adicionar_imovel(self, id, endereco, preco, tipo):
         """" Adiciona um novo imóvel à lista, se for válido"""
 
         if validar_imovel(endereco, preco, tipo):
-            id = gerar_id(endereco)                # <- lógica provisória para ID
+            if not id:
+                id = gerar_imo_id()              # <- lógica provisória para ID
             imovel = Imovel(id, endereco, preco, tipo)
             self.imoveis.append(imovel)
 
