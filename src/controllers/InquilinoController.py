@@ -1,14 +1,15 @@
 from src.models.Inquilino import Inquilino
 from src.utils.validators import validar_inquilino
-from src.utils.idCreator import gerar_id
+from src.utils.idCreator import gerar_inq_id
 class InquilinoController:
     def __init__(self):
         self.inquilinos = []
 
-    def adicionar_inquilino(self, nome, contacto, data_de_entrada, casa):
+    def adicionar_inquilino(self, id, nome, contacto, data_de_entrada, casa):
         """ Adiciona um novo inquilino à lista de inquilinos, se for válido """
         if validar_inquilino(nome, contacto, data_de_entrada):
-            id = gerar_id(nome)
+            if not id:
+                id = gerar_inq_id()
             inquilino = Inquilino(id, nome, contacto, data_de_entrada, casa)
             self.inquilinos.append(inquilino)
 

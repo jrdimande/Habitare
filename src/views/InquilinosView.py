@@ -1,4 +1,5 @@
 from src.controllers.InquilinoController import InquilinoController
+from src.utils.idCreator import gerar_inq_id
 
 
 InquilinoController = InquilinoController()
@@ -31,7 +32,8 @@ def InquilinosView(parent):
             return
 
         # Adiciona o inquilino no controlador e salva os dados
-        InquilinoController.adicionar_inquilino(nome, contacto, hoje, imovel)
+        id_inquilino = gerar_inq_id()
+        InquilinoController.adicionar_inquilino(id_inquilino, nome, contacto, hoje, imovel)
         ultimo = InquilinoController.inquilinos[-1]  # Recupera o último inquilino adicionado
         dump(InquilinoController)  # Salva no JSON
 
@@ -206,13 +208,14 @@ def InquilinosView(parent):
         dados = load()
         for i in range(len(dados["inquilinos"])):
             InquilinoController.adicionar_inquilino(
+                dados["inquilinos"][i]["id"],
                 dados["inquilinos"][i]["nome"],
                 dados["inquilinos"][i]["contacto"],
                 dados["inquilinos"][i]["data_de_entrada"],
                 dados["inquilinos"][i]["imovel"]
             )
             inquilino = InquilinoController.inquilinos[i]
-            tree.insert("", "end", values=(inquilino.id, inquilino.nome, inquilino.contacto, inquilino.casa, inquilino.data_de_entrada))
+            tree.insert("", "end", values=(inquilino.id, inquilino.nome, inquilino.contacto, inquilino.imovel, inquilino.data_de_entrada))
 
     # Chamada inicial para preencher a tabela ao abrir o app
     update_treeview()
