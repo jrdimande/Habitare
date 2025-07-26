@@ -6,13 +6,15 @@ class ImovelController:
     def __init__(self):
         self.imoveis = []
 
-    def adicionar_imovel(self, id, endereco, preco, tipo):
+    def adicionar_imovel(self, id, endereco, preco, tipo, estado):
         """" Adiciona um novo imóvel à lista, se for válido"""
 
         if validar_imovel(endereco, preco, tipo):
             if not id:
-                id = gerar_imo_id()              # <- lógica provisória para ID
-            imovel = Imovel(id, endereco, preco, tipo)
+                id = gerar_imo_id()
+            if not estado:
+                estado = False
+            imovel = Imovel(id, endereco, preco, tipo, estado)
             self.imoveis.append(imovel)
 
     def buscar_imovel(self, id):
@@ -56,6 +58,8 @@ class ImovelController:
                 contador += 1
 
         return contador
+
+
 
 
 
