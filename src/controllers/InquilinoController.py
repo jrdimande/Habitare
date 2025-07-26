@@ -18,7 +18,6 @@ class InquilinoController:
             inquilino = Inquilino(id, nome, contacto, data_de_entrada, id_imovel)
             self.inquilinos.append(inquilino)
 
-            # Carregar dados dos imóveis
             filename = "imoveis.json"
             dados = load()
 
@@ -41,9 +40,6 @@ class InquilinoController:
         inquilino = self.buscar_inquilino(id)
         self.inquilinos.remove(inquilino)
 
-        dados = load()                                              #<- carregar dados dos imóveis
-
-        # Carregar dados dos imóveis
         filename = "imoveis.json"
         dados = load()
         id_imovel = inquilino.imovel
