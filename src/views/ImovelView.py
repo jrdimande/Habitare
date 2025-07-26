@@ -32,7 +32,7 @@ def ImoveisView(parent):
             return
 
         id_imovel = gerar_imo_id()
-        ImovelController.adicionar_imovel(id_imovel, endereco, preco_float, tipo)
+        ImovelController.adicionar_imovel(id_imovel, endereco, preco_float, tipo,estado=False)
         ultimo = ImovelController.imoveis[-1]
         estado = "Ocupado" if ultimo.estado else "Disponível"
         tree.insert("", "end", values=(ultimo.id, endereco, preco_float, tipo, estado))
@@ -119,7 +119,8 @@ def ImoveisView(parent):
                 dados["imoveis"][i]["id"],
                 dados["imoveis"][i]["endereco"],
                 dados["imoveis"][i]["preco"],
-                dados["imoveis"][i]["tipo"]
+                dados["imoveis"][i]["tipo"],
+                dados["imoveis"][i]["estado"]
             )
             imovel = ImovelController.imoveis[i]
             estado = "Ocupado" if imovel.estado else "Disponível"
