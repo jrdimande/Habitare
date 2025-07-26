@@ -14,7 +14,8 @@ def dump(ImovelController):
             "endereco" : imovel.endereco,
             "preco" : imovel.preco,
             "tipo" : imovel.tipo,
-            "estado": imovel.estado
+            "estado": imovel.estado,
+            "ocupante" : imovel.ocupante
 
         }
         dados["imoveis"].append(actual)
