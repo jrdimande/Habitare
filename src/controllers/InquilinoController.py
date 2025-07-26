@@ -11,7 +11,6 @@ class InquilinoController:
     def adicionar_inquilino(self, id, nome, contacto, data_de_entrada, id_imovel):
         """ Adiciona um novo inquilino à lista de inquilinos, se for válido """
 
-
         if validar_inquilino(nome, contacto, data_de_entrada):
             if not id:
                 id = gerar_inq_id()
@@ -26,9 +25,10 @@ class InquilinoController:
             for i in range(len(dados["imoveis"])):
                 if dados["imoveis"][i]["id"] == id_imovel:
                     dados["imoveis"][i]["estado"] = True
+                    dados["imoveis"][i]["ocupante"] = nome
 
             with open(filename, "w") as f:
-                json.dump(dados, f)
+                json.dump(dados, f, indent=4)
 
     def buscar_inquilino(self, id):
         """ Busca e retorna o inquilino com o ID especificado """
