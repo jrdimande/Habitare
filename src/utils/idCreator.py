@@ -6,7 +6,7 @@ import random
 
 def gerar_inq_id():
     " Cria IDs para inquilinos "
-    aleatorio = str(uuid.uuid4())[:4]
+    aleatorio = (str(uuid.uuid4())[:4]).upper()
     return f"INQ-{aleatorio}"
 
     return f"{iniciais}-{aleatorio}"
@@ -17,7 +17,7 @@ def gerar_pay_id():
 
 def gerar_imo_id():
     " Criar IDs para imóveis"
-    aleatorio = str(uuid.uuid4())[:4]
+    aleatorio = (str(uuid.uuid4())[:4]).upper()
     return f"IMO-{aleatorio}"
 
 
