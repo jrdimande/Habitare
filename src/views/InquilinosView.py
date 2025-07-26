@@ -1,5 +1,6 @@
 from src.controllers.InquilinoController import InquilinoController
 from src.utils.idCreator import gerar_inq_id
+from src.storage.imovel_json import load, dump
 
 
 InquilinoController = InquilinoController()
