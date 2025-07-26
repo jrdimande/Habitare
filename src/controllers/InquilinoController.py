@@ -1,3 +1,5 @@
+import json
+
 from src.models.Inquilino import Inquilino
 from src.utils.validators import validar_inquilino
 from src.utils.idCreator import gerar_inq_id
@@ -17,6 +19,16 @@ class InquilinoController:
             inquilino = Inquilino(id, nome, contacto, data_de_entrada, id_imovel)
             self.inquilinos.append(inquilino)
 
+            # Carregar dados dos imóveis
+            filename = "imoveis.json"
+            dados = load()
+
+            for i in range(len(dados["imoveis"])):
+                if dados["imoveis"][i]["id"] == id_imovel:
+                    dados["imoveis"][i]["estado"] = True
+
+            with open(filename, "w") as f:
+                json.dump(dados, f)
 
     def buscar_inquilino(self, id):
         """ Busca e retorna o inquilino com o ID especificado """
