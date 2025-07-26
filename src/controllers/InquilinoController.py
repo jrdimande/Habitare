@@ -41,6 +41,22 @@ class InquilinoController:
         inquilino = self.buscar_inquilino(id)
         self.inquilinos.remove(inquilino)
 
+        dados = load()                                              #<- carregar dados dos imóveis
+
+        # Carregar dados dos imóveis
+        filename = "imoveis.json"
+        dados = load()
+        id_imovel = inquilino.imovel
+
+        for i in range(len(dados["imoveis"])):
+            if dados["imoveis"][i]["id"] == id_imovel:
+                dados["imoveis"][i]["estado"] = False
+                dados["imoveis"][i]["ocupante"] = None
+
+        with open(filename, "w") as f:
+            json.dump(dados, f, indent=4)
+
+
     def atualizar_inquilino(self,id, nome, contacto, casa):
         """ Atualiza os atributos do inquilino com o ID especificado """
         inquilino = self.buscar_inquilino(id)
