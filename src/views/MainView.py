@@ -1,6 +1,7 @@
 import tkinter as tk
 from InquilinosView import InquilinosView
 from ImovelView import ImoveisView
+from PagamentosView import PagamentosView
 
 root = tk.Tk()
 root.title("Habitare")
@@ -12,7 +13,7 @@ def inquilinos():
     InquilinosView(root)
 
 def pagamentos():
-    pass
+    PagamentosView(root)
 
 
 def imoveis():

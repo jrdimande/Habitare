@@ -168,7 +168,7 @@ def InquilinosView(parent):
     tree.configure(yscrollcommand=scrollbar.set)
 
     # Formulário de cadastro
-    frame_form = tk.LabelFrame(root, text="Formulário", bg="white", bd=2)
+    frame_form = tk.LabelFrame(root, text="Formulário de Cadastro", bg="white", bd=2)
     frame_form.place(x=245, y=40, width=610, height=200)
 
     # Campos do formulário
