@@ -58,15 +58,3 @@ class ImovelController:
                 contador += 1
 
         return contador
-
-
-
-
-
-
-
-
-
-
-
-
