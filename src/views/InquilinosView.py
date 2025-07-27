@@ -34,7 +34,7 @@ def InquilinosView(parent):
         imovel_existe = False
 
         for i in imoveis:
-            if i["id"] == imovel and i["estado"] == None:
+            if i["id"] == imovel and i["estado"] == False:
                 imovel_existe = True
 
         if not imovel_existe:
