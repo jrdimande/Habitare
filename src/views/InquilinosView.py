@@ -28,6 +28,7 @@ def InquilinosView(parent):
         contacto = contactoEntry.get()
         imovel = imovelEntry.get()
 
+        # Validar imóvel antes de adicionar inquilino
         dados_imoveis = imo.load()
         imoveis = dados_imoveis["imoveis"]
         imovel_existe = False
