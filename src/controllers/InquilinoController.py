@@ -42,7 +42,7 @@ class InquilinoController:
 
             inquilino = Inquilino(id, nome, contacto, data_de_entrada, id_imovel)
             self.inquilinos.append(inquilino)
-            self.ocupar_imovel(id_imovel, nome)
+            self.ocupar_imovel(id_imovel, f"{nome}|{id}")
             return True
         return False
 
