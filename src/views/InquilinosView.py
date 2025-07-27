@@ -1,6 +1,7 @@
 from src.controllers.InquilinoController import InquilinoController
 from src.utils.idCreator import gerar_inq_id
-from src.storage.imovel_json import load, dump
+import src.storage.imovel_json as imo
+
 
 
 InquilinoController = InquilinoController()
@@ -26,6 +27,18 @@ def InquilinosView(parent):
         nome = nameEntry.get()
         contacto = contactoEntry.get()
         imovel = imovelEntry.get()
+
+        dados_imoveis = imo.load()
+        imoveis = dados_imoveis["imoveis"]
+        imovel_existe = False
+
+        for i in imoveis:
+            if i["id"] == imovel:
+                imovel_existe = True
+
+        if not imovel_existe:
+            messagebox.showwarning("Aviso", "Imóvel não encontrado")
+            return
 
         # Validação básica de campos obrigatórios
         if not nome or not contacto or not imovel:
