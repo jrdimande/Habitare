@@ -4,6 +4,7 @@ from src.utils.tempo import hoje
 from src.storage.inquilino_json import  load, open_and_dump
 from src.storage.pagamento_json import dump
 from src.storage.pagamento_json import load as load_pagamento
+from src.storage.imovel_json import load as load_imovel
 
 pagamento_controller = PagamentoController()
 def PagamentosView(parent):
@@ -19,9 +20,8 @@ def PagamentosView(parent):
 
     # Função para adicionar pagamento
     def adicionar_pagamento():
-        id_inquilino = idInquilinoEntry.get()
-        valor = valorEntry.get()
-
+        id_inquilino = idInquilinoEntry.get().strip()
+        valor = valorEntry.get().strip()
 
         # Validação
         # Verificar se o ID especificado existe
@@ -39,6 +39,26 @@ def PagamentosView(parent):
         # Verificar se os campos estão preenchidos
         if not id_inquilino or not valor :
             messagebox.showwarning("Aviso", "Preencha todos os campos", parent=root)
+            return
+
+        # Validar valor do pagamento
+        valor_valido = False
+        valor_a_pagar = None
+
+        id_imovel = None
+        dados_imoveis = load_imovel()
+
+        for i in range(len(dados_inquilinos["inquilinos"])):
+            if dados_inquilinos["inquilinos"][i]["id"] == id_inquilino:
+                id_imovel = dados_inquilinos["inquilinos"][i]["imovel"]
+
+        for i in range(len(dados_imoveis["imoveis"])):
+            if dados_imoveis["imoveis"][i]["preco"] == valor:
+                valor_valido = True
+                valor_a_pagar = dados_imoveis["imoveis"][i]["preco"]
+
+        if  valor != valor_a_pagar:
+            messagebox.showwarning("Valor Incorreto", "O valor introduzido não corresponde ao valor que o inquilino deve pagar")
             return
 
         id_pagamento = gerar_pay_id()  # <- gerar id para pagamento
