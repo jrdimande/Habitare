@@ -34,4 +34,3 @@ def load():
         return imoveis
     except FileNotFoundError:
         return {"imoveis" : [] }
-
