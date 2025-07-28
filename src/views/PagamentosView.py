@@ -24,13 +24,28 @@ def PagamentosView(parent):
 
 
         # Validação
+        # Verificar se o ID especificado existe
+        dados_inquilinos = load()
+        inquilino_existe = False
+
+        for i in range(len(dados_inquilinos["inquilinos"])):
+            if dados_inquilinos["inquilinos"][i]["id"] == id_inquilino:
+                inquilino_existe = True
+
+        if not inquilino_existe:
+            messagebox.showwarning("Aviso", "Nenhum registro correspondente ao ID especificado")
+            return
+
+        # Verificar se os campos estão preenchidos
         if not id_inquilino or not valor :
             messagebox.showwarning("Aviso", "Preencha todos os campos", parent=root)
             return
-        id_pagamento = gerar_pay_id()
-        pagamento_controller.adicionar_pagamento(id_pagamento, id_inquilino, valor, hoje)
-        dados_inquilinos = load()
 
+        id_pagamento = gerar_pay_id()  # <- gerar id para pagamento
+        pagamento_controller.adicionar_pagamento(id_pagamento, id_inquilino, valor, hoje)
+
+        # Carregar dados dos inquilinos para fazer busca do inquilino com o id especificado e fazer adicionar pagamento à lista de pagamentos
+        dados_inquilinos = load()
         for i in range(len(dados_inquilinos["inquilinos"])):
             if dados_inquilinos["inquilinos"][i]["id"] == id_inquilino:
                 pagamento = {"id" : id_pagamento,
