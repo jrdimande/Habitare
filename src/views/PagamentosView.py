@@ -35,6 +35,7 @@ def PagamentosView(parent):
 
         if not inquilino_existe:
             messagebox.showwarning("Aviso", "Nenhum registro correspondente ao ID especificado")
+            idInquilinoEntry.delete(0, tk.END)
             return
 
         # Verificar se os campos estão preenchidos
@@ -61,6 +62,11 @@ def PagamentosView(parent):
             if imovel["id"] == id_imovel:
                 valor_a_pagar = imovel["preco"]
                 break
+
+        if not valor.isdigit():
+            messagebox.showwarning("Valor Inválido", "Insira um valor válido")
+            valorEntry.delete(0, tk.END)
+            return
 
         if  not valor or float(valor) != float(valor_a_pagar):
             messagebox.showwarning("Valor Incorreto", "O valor introduzido não corresponde ao valor que o inquilino deve pagar")
