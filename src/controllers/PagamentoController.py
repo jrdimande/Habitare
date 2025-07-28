@@ -1,44 +1,29 @@
 from src.models.Pagamento import Pagamento
-from src.utils.validators import validar_pagamento
 from src.utils.idCreator import gerar_pay_id
-class PagamentoController:
-    def __init__(self, InquilinoController):
-        self.InquilinoController = InquilinoController
+from src.storage.inquilino_json import load
+
+
+class PagamentoController():
+    def __init__(self):
         self.pagamentos = []
 
-    def adicionar_pagamento(self, id_inquilino, valor, data_pagamentos):
-        """ Adiciona pagamento à lista de pagamentos """
-        if  not validar_pagamento(valor):
-            return "Pagamento inválido"
+    def adicionar_pagamento(self, id_pagamento, id_inquilino, valor, data_de_pagamento):
+        "Adiciona um novo pagamento à lista de pagamentos , se for válido"
+        if not id_pagamento:
+            id_pagamento = gerar_pay_id()
 
-        inquilino = InquilinoController.buscar_inquilino(id_inquilino)
+        if not id_inquilino or not valor or not data_de_pagamento:
+            return False
 
-        if not inquilino:
-            return "Inquilino não encontrado"
+        dados_inquilinos = load()
+        inquilinos = dados_inquilinos["inquilinos"]
+        inquilino_existe = False
 
-        id_pagamento = gerar_pay_id
-        pagamento = Pagamento(id_pagamento, id_inquilino, valor, data_pagamentos)
-        self.pagamentos.append(pagamento)
-        self.InquilinoController.adicionar_pagamento(pagamento)
+        for iquilino in range(len(inquilinos)):
+            if inquilinos[iquilino]["id"] == id_inquilino:
+                inquilino_existe = True
 
-    def buscar_pagamento(self, id_pagamento):
-        " Busca e retorna o pagamento com o ID especificado"
-        for pagamento in self.pagamentos:
-            if pagamento.id == id_pagamento:
-                return pagamento
-
-
-    def remover_pagamento(self, id_pagamento):
-        """ Remove pagamento com o ID especificado """
-        pagamento = self.buscar_pagamento(id_pagamento)
-        self.pagamentos.remove(pagamento)
-
-
-    def atualizar_pagamento(self, id_pagamento):
-        pass
-
-
-
-
-
+        if inquilino_existe:
+            pagamento = Pagamento(id_pagamento, id_inquilino, valor, data_de_pagamento)
+            self.pagamentos.append(pagamento)
 

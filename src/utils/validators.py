@@ -15,10 +15,11 @@ def validar_imovel(endereco, preco, tipo):
         return True
     return False
 
-def validar_pagamento(valor):
-    """ Validar pagamentos"""
-    if valor > 0:
-        return True
-    return False
+# def validar_pagamento(valor):
+#     """ Validar pagamentos"""
+#     valor = float(valor)
+#     if valor > 0:
+#         return True
+#     return False
 
 

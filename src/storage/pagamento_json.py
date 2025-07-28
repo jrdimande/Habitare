@@ -3,10 +3,10 @@ from src.controllers.PagamentoController import PagamentoController
 
 def dump(PagamentoController):
     """ Salvar os dados no arquivo .json """
-    PagamentoController = PagamentoController()
+    PagamentoController = PagamentoController
     filename = "pagamentos.json"
 
-    dados = {"Pagamentos" : []}
+    dados = {"pagamentos" : []}
 
     for pagamento in PagamentoController.pagamentos:
         actual = {"id" : pagamento.id_pagamento,
@@ -14,7 +14,7 @@ def dump(PagamentoController):
                   "valor" : pagamento.valor,
                   "data" : pagamento.data_de_pagamento
                   }
-        dados["Pagamentos"].append(actual)
+        dados["pagamentos"].append(actual)
 
     with open(filename, "w") as f:
         json.dump(dados, f, indent=4)

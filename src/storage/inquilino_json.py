@@ -13,7 +13,8 @@ def dump(inc):
                   "nome" : inquilino.nome,
                   "contacto" : inquilino.contacto,
                   "data_de_entrada" : inquilino.data_de_entrada,
-                  "imovel" : inquilino.imovel
+                  "imovel" : inquilino.imovel,
+                  "pagamentos" : inquilino.pagamentos
                   }
         dados["inquilinos"].append(actual)
 
@@ -30,3 +31,7 @@ def load():
     except FileNotFoundError:
         return {"inquilinos": []}
 
+def open_and_dump(data):
+    filepath = "inquilinos.json"
+    with open(filepath, "w") as f:
+        json.dump(data, f, indent=4)
