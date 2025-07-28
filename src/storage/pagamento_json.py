@@ -1,10 +1,11 @@
 import json
 from src.controllers.PagamentoController import PagamentoController
 
+filename = "pagamentos.json"
 def dump(PagamentoController):
     """ Salvar os dados no arquivo .json """
+
     PagamentoController = PagamentoController
-    filename = "pagamentos.json"
 
     dados = {"pagamentos" : []}
 
@@ -22,10 +23,16 @@ def dump(PagamentoController):
 
 def load():
     """ Carregar os dados n arquivo .json"""
-    filename = "pagamentos.json"
     try:
         with open(filename, "r") as f:
             pagamentos = json.load(f)
         return pagamentos
     except FileNotFoundError:
         return {"Pagamentos" : []}
+
+def open_dump(dados):
+
+    with open(filename, "w") as f:
+        json.dump(dados, f, indent=4)
+        return True
+    return False
