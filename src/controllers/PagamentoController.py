@@ -52,13 +52,3 @@ class PagamentoController():
             json.dump(dados_pagamentos, f, indent=4)
             return True
         return False
-
-
-
-
-
-
-
-
-
-
