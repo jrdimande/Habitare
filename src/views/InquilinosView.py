@@ -24,9 +24,9 @@ def InquilinosView(parent):
 
     # Função para adicionar novo inquilino
     def adicionar_inquilino():
-        nome = nameEntry.get()
-        contacto = contactoEntry.get()
-        imovel = imovelEntry.get()
+        nome = nameEntry.get().strip().title()
+        contacto = contactoEntry.get().strip().strip()
+        imovel = imovelEntry.get().strip().title()
 
         # Validar imóvel antes de adicionar inquilino
         dados_imoveis = imo.load()

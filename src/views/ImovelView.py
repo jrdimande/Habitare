@@ -17,9 +17,9 @@ def ImoveisView(parent):
 
     # Adicionar imóvel
     def adicionar_imovel():
-        endereco = enderecoEntry.get()
-        preco = precoEntry.get()
-        tipo = tipoEntry.get()
+        endereco = enderecoEntry.get().title().strip()
+        preco = precoEntry.get().strip()
+        tipo = tipoEntry.get().strip()
 
         if not endereco or not preco or not tipo:
             messagebox.showwarning("Aviso", "Preencha todos os campos", parent=root)
