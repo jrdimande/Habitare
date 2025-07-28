@@ -1,5 +1,5 @@
 import json
-from src.controllers.PagamentoController import PagamentoController
+
 
 filename = "pagamentos.json"
 def dump(PagamentoController):
@@ -30,9 +30,3 @@ def load():
     except FileNotFoundError:
         return {"Pagamentos" : []}
 
-def open_dump(dados):
-
-    with open(filename, "w") as f:
-        json.dump(dados, f, indent=4)
-        return True
-    return False

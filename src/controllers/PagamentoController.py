@@ -18,7 +18,7 @@ class PagamentoController():
 
         if not id_inquilino or not valor or not data_de_pagamento:
             return False
-
+        dados_inquilinos = load()
         inquilinos = dados_inquilinos["inquilinos"]
         inquilino_existe = False
 
