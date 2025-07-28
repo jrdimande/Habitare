@@ -21,9 +21,10 @@ def PagamentosView(parent):
     # Função para adicionar pagamento
     def adicionar_pagamento():
         id_inquilino = idInquilinoEntry.get().strip()
-        valor = valorEntry.get().strip()
+        valor = valorEntry.get()
 
         # Validação
+
         # Verificar se o ID especificado existe
         dados_inquilinos = load()
         inquilino_existe = False
@@ -42,24 +43,28 @@ def PagamentosView(parent):
             return
 
         # Validar valor do pagamento
+
         valor_valido = False
         valor_a_pagar = None
 
         id_imovel = None
         dados_imoveis = load_imovel()
 
-        for i in range(len(dados_inquilinos["inquilinos"])):
-            if dados_inquilinos["inquilinos"][i]["id"] == id_inquilino:
-                id_imovel = dados_inquilinos["inquilinos"][i]["imovel"]
+        # Buscar o imóvel do inquilino
+        for inq in dados_inquilinos["inquilinos"]:
+            if inq["id"] == id_inquilino:
+                id_imovel = inq["imovel"]
+                break
 
-        for i in range(len(dados_imoveis["imoveis"])):
-            if dados_imoveis["imoveis"][i]["preco"] == valor:
-                valor_valido = True
-                valor_a_pagar = dados_imoveis["imoveis"][i]["preco"]
+        # Obter o valor a pagar do imóvel correspondente
+        for imovel in dados_imoveis["imoveis"]:
+            if imovel["id"] == id_imovel:
+                valor_a_pagar = imovel["preco"]
+                break
 
-        if  valor != valor_a_pagar:
+        if  not valor or float(valor) != float(valor_a_pagar):
             messagebox.showwarning("Valor Incorreto", "O valor introduzido não corresponde ao valor que o inquilino deve pagar")
-            return
+            retur
 
         id_pagamento = gerar_pay_id()  # <- gerar id para pagamento
         pagamento_controller.adicionar_pagamento(id_pagamento, id_inquilino, valor, hoje)
