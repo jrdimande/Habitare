@@ -70,7 +70,7 @@ def PagamentosView(parent):
 
         if  not valor or float(valor) != float(valor_a_pagar):
             messagebox.showwarning("Valor Incorreto", "O valor introduzido não corresponde ao valor que o inquilino deve pagar")
-            retur
+            return
 
         id_pagamento = gerar_pay_id()  # <- gerar id para pagamento
         pagamento_controller.adicionar_pagamento(id_pagamento, id_inquilino, valor, hoje)
@@ -107,7 +107,10 @@ def PagamentosView(parent):
         confirmado = messagebox.askyesno("Remover Pagamento", "Deseja remover este pagamento?", parent=root)
         if confirmado:
             for item in selecionado:
+                valores = tree.item(item, "values")
+                id_pagamento = valores[0]
                 tree.delete(item)
+
 
 
     # Sidebar
@@ -151,6 +154,20 @@ def PagamentosView(parent):
     botaoRemover = tk.Button(frame_form, text="Cancelar", width=20, relief="ridge", command=remover_pagamento,bg="#7F8C8D", fg="#ECF0F1")
     botaoRemover.place(x=425, y=60)
 
+
+    def mostrar_menu(event):
+        item = tree.identify_row(event.y)
+        if item:
+            tree.selection()
+            menu_popup.post(event.x_root, event.y_root)
+
+
+    menu_popup = tk.Menu(root, tearoff=0)
+    menu_popup.add_command(label="Remover", command=remover_pagamento)
+    tree.bind("<Button-3>",  mostrar_menu)
+
+
+
     def update_treeview():
         dados_pagamentos = load_pagamento()
         for p in range(len(dados_pagamentos["pagamentos"])):
@@ -165,5 +182,11 @@ def PagamentosView(parent):
             tree.insert("", "end", values=(pagamento.id_pagamento, pagamento.id_inquilino, pagamento.valor, pagamento.data_de_pagamento))
 
     update_treeview()
+
+
+
+
+
+
 
     root.mainloop()

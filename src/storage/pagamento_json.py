@@ -2,6 +2,7 @@ import json
 
 
 filename = "pagamentos.json"
+
 def dump(PagamentoController):
     """ Salvar os dados no arquivo .json """
 
@@ -27,6 +28,6 @@ def load():
         with open(filename, "r") as f:
             pagamentos = json.load(f)
         return pagamentos
-    except FileNotFoundError:
-        return {"Pagamentos" : []}
+    except Exception:
+        return {"pagamentos" : []}
 

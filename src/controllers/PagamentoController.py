@@ -11,6 +11,7 @@ class PagamentoController():
         self.pagamentos = []
         dados_inquilinos = load()
 
+
     def adicionar_pagamento(self, id_pagamento, id_inquilino, valor, data_de_pagamento):
         "Adiciona um novo pagamento à lista de pagamentos , se for válido"
         if not id_pagamento:
@@ -31,24 +32,3 @@ class PagamentoController():
             self.pagamentos.append(pagamento)
 
 
-    def remover_pagamento(self, id_pagamento):
-        " Remover o pagamento com ID especificado"
-        dados_pagamentos = load_pagamentos()    #<- carregar os dados dos pagamentos
-
-        if id_pagamento:
-            for pagamento in self.pagamentos:
-                if pagamento.id_pagamento == id_pagamento:
-                    self.pagamentos.remove(id_pagamento)
-                    break
-
-        for pagamento in dados_pagamentos["pagamentos"]:
-            if pagamento["id"] == id_pagamento:
-                dados_pagamentos["pagamentos"].remove(pagamento)
-                break
-
-        filename = "pagamentos.json"
-
-        with open(filename, "w") as f:
-            json.dump(dados_pagamentos, f, indent=4)
-            return True
-        return False
