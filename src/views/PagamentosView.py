@@ -1,13 +1,13 @@
 from src.controllers.PagamentoController import PagamentoController
 from src.utils.idCreator import gerar_pay_id
 from src.utils.tempo import hoje
-from src.storage.inquilino_json import  load, open_and_dump
+from src.storage.inquilino_json import load, open_and_dump
 from src.storage.pagamento_json import dump
 from src.storage.pagamento_json import load as load_pagamento
 from src.storage.imovel_json import load as load_imovel
 
 pagamento_controller = PagamentoController()
-def PagamentosView(parent):
+def pagamentosView(parent):
     import tkinter as tk
     from tkinter import ttk
     from tkinter import messagebox
@@ -39,7 +39,7 @@ def PagamentosView(parent):
             return
 
         # Verificar se os campos estão preenchidos
-        if not id_inquilino or not valor :
+        if not id_inquilino or not valor:
             messagebox.showwarning("Aviso", "Preencha todos os campos", parent=root)
             return
 
