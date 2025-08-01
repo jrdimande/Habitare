@@ -126,5 +126,4 @@ def ImoveisView(parent):
             estado = "Ocupado" if imovel.estado else "Disponível"
             tree.insert("", "end", values=(imovel.id, imovel.endereco, imovel.preco, imovel.tipo, estado))
 
-
     update_treeview()
