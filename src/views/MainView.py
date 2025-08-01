@@ -1,7 +1,7 @@
 import tkinter as tk
 from InquilinosView import InquilinosView
 from ImovelView import ImoveisView
-from PagamentosView import PagamentosView
+from src.views.PagamentosView import PagamentosView
 
 root = tk.Tk()
 root.title("Habitare")
