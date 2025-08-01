@@ -1,36 +1,39 @@
 import json
+import os
 from src.controllers.ImovelController import ImovelController
 
-def dump(ImovelController):
-    "Salvar dados em arquivo JSON"
-    ImovelController = ImovelController
-    filename = "imoveis.json"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FILENAME = os.path.join(BASE_DIR, "storage", "imoveis.json")
 
-    dados = {"imoveis" : [] }
+def dump(controller: ImovelController):
+    "Salvar dados em arquivo json"
+    os.makedirs(os.path.dirname(FILENAME), exist_ok=True)
 
-    for imovel in ImovelController.imoveis:
-        actual = {
-            "id" : imovel.id,
-            "endereco" : imovel.endereco,
-            "preco" : imovel.preco,
-            "tipo" : imovel.tipo,
+    dados = {"imoveis": []}
+
+    for imovel in controller.imoveis:
+        atual = {
+            "id": imovel.id,
+            "endereco": imovel.endereco,
+            "preco": imovel.preco,
+            "tipo": imovel.tipo,
             "estado": imovel.estado,
-            "ocupante" : imovel.ocupante
-
+            "ocupante": imovel.ocupante
         }
-        dados["imoveis"].append(actual)
+        dados["imoveis"].append(atual)
 
-    with open(filename, "w") as f:
+    with open(FILENAME, "w", encoding="utf-8") as f:
         json.dump(dados, f, indent=4)
 
 
 def load():
-    " Carregar dados do ficheiro JSON "
-    filename = "imoveis.json"
+    "Carregar dados do arquivo json"
+    os.makedirs(os.path.dirname(FILENAME), exist_ok=True)
 
-    try:
-        with open(filename, "r") as f:
-            imoveis = json.load(f)
-        return imoveis
-    except FileNotFoundError:
-        return {"imoveis" : [] }
+    if not os.path.exists(FILENAME):
+        with open(FILENAME, "w", encoding="utf-8") as f:
+            json.dump({"imoveis": []}, f, indent=4)
+
+    with open(FILENAME, "r", encoding="utf-8") as f:
+        imoveis = json.load(f)
+    return imoveis
