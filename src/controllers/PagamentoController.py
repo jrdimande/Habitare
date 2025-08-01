@@ -55,6 +55,3 @@ class PagamentoController():
 
         if inquilino_existe:
             self.pagamentos.remove(pagamento)
-
-
-
