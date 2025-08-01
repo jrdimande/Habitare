@@ -87,14 +87,12 @@ def PagamentosView(parent):
 
         dump(pagamento_controller)
 
-
         # Insere na treeview
         tree.insert("", "end", values=(id_pagamento, id_inquilino, valor, hoje))
 
         # Limpa campos
         valorEntry.delete(0, tk.END)
         idInquilinoEntry.delete(0, tk.END)
-
 
     # Função para remover pagamento
     def remover_pagamento():
