@@ -7,7 +7,7 @@ from src.storage.pagamento_json import load as load_pagamento
 from src.storage.imovel_json import load as load_imovel
 
 pagamento_controller = PagamentoController()
-def pagamentosView(parent):
+def PagamentosView(parent):
     import tkinter as tk
     from tkinter import ttk
     from tkinter import messagebox

@@ -30,5 +30,3 @@ class PagamentoController():
         if inquilino_existe:
             pagamento = Pagamento(id_pagamento, id_inquilino, valor, data_de_pagamento)
             self.pagamentos.append(pagamento)
-
-
