@@ -24,7 +24,6 @@ def PagamentosView(parent):
         valor = valorEntry.get()
 
         # Validação
-
         # Verificar se o ID especificado existe
         dados_inquilinos = load()
         inquilino_existe = False
@@ -99,6 +98,7 @@ def PagamentosView(parent):
 
     # Função para remover pagamento
     def remover_pagamento():
+        "Remove pagamento"
         selecionado = tree.selection()
         if not selecionado:
             messagebox.showwarning("Aviso", "Selecione um pagamento para remover", parent=root)
@@ -109,8 +109,22 @@ def PagamentosView(parent):
             for item in selecionado:
                 valores = tree.item(item, "values")
                 id_pagamento = valores[0]
+                id_inquilino = valores[1]
                 tree.delete(item)
 
+                # Carregar dados dos inquilinos para fazer busca do inquilino com o id especificado remover pagamento à lista de pagamentos
+                dados_inquilinos = load()
+                inquilinos = dados_inquilinos["inquilinos"]
+
+                for i in inquilinos:
+                    if i["id"] == id_inquilino:
+                        pagamentos = i["pagamentos"]
+                        for p in range(len(pagamentos)):
+                            if pagamentos[p]["id"] == id_pagamento:
+                                pagamentos.pop(p)
+                                open_and_dump(dados_inquilinos)
+                pagamento_controller.remover_pagamento(id_pagamento, id_inquilino)
+                dump(pagamento_controller)
 
 
     # Sidebar
