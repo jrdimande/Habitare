@@ -195,10 +195,4 @@ def PagamentosView(parent):
 
     update_treeview()
 
-
-
-
-
-
-
     root.mainloop()
