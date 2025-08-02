@@ -15,6 +15,7 @@ class InquilinoController:
         self.inquilinos = []
 
 
+    @staticmethod
     def ocupar_imovel(self, id_imovel, nome):
         dados = load()
 
@@ -26,6 +27,7 @@ class InquilinoController:
         with open(FILENAME, "w") as f:
             json.dump(dados, f, indent=4)
 
+    @staticmethod
     def desocupar_imovel(self, id_imovel):
         filename = "imoveis.json"
         dados = load()
@@ -51,7 +53,6 @@ class InquilinoController:
             return True
         return False
 
-
     def buscar_inquilino(self, id):
         """ Busca e retorna o inquilino com o ID especificado """
         for inquilino in self.inquilinos:
@@ -59,28 +60,25 @@ class InquilinoController:
                 return inquilino
         return False
 
-
     def remover_inquilino(self, id):
         """ Remove o inquilino com o ID especificado """
         inquilino = self.buscar_inquilino(id)
         if inquilino:
             self.inquilinos.remove(inquilino)
-
-            filename = "imoveis.json"
             dados = load()
             id_imovel = inquilino.imovel
             self.desocupar_imovel(id_imovel)
 
-
-    def atualizar_inquilino(self,id, nome, contacto, id_imovel):
+    def atualizar_inquilino(self, id, nome, contacto, id_imovel):
         """ Atualiza os atributos do inquilino com o ID especificado """
         inquilino = self.buscar_inquilino(id)
         if inquilino:
             inquilino.nome = nome
             inquilino.contacto = contacto
-            inquilino.casa= id_imovel
+            inquilino.casa = id_imovel
             return True
         return False
+
     def adicionar_pagamento(self, pagamento):
         """ Adiciona pagamento à lista de pagamentos do inquilino """
         inquilino = self.buscar_inquilino(pagamento.id_inquilino)
