@@ -127,3 +127,7 @@ def ImoveisView(parent):
             tree.insert("", "end", values=(imovel.id, imovel.endereco, imovel.preco, imovel.tipo, estado))
 
     update_treeview()
+
+    botao_carregar = tk.Button(frame_form, text="Carregar", width=20, relief="ridge", command=update_treeview, bg=None,
+                               fg=None)
+    botao_carregar.place(x=425, y=100)

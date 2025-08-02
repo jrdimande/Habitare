@@ -167,6 +167,8 @@ def PagamentosView(parent):
     botaoRemover.place(x=425, y=60)
 
 
+
+
     def mostrar_menu(event):
         item = tree.identify_row(event.y)
         if item:
@@ -194,5 +196,8 @@ def PagamentosView(parent):
             tree.insert("", "end", values=(pagamento.id_pagamento, pagamento.id_inquilino, pagamento.valor, pagamento.data_de_pagamento))
 
     update_treeview()
+
+    botao_carregar = tk.Button(frame_form, text="Carregar", width=20, relief="ridge", command=update_treeview, bg=None, fg=None)
+    botao_carregar.place(x=425, y=100)
 
     root.mainloop()

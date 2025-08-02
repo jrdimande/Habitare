@@ -3,6 +3,12 @@ from src.models.Inquilino import Inquilino
 from src.utils.validators import validar_inquilino
 from src.utils.idCreator import gerar_inq_id
 from src.storage.imovel_json import load, dump
+import os
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FILENAME = os.path.join(BASE_DIR, "storage", "imoveis.json")
+
 
 class InquilinoController:
     def __init__(self):
@@ -10,7 +16,6 @@ class InquilinoController:
 
 
     def ocupar_imovel(self, id_imovel, nome):
-        filename = "imoveis.json"
         dados = load()
 
         for i in range(len(dados["imoveis"])):
@@ -18,7 +23,7 @@ class InquilinoController:
                 dados["imoveis"][i]["estado"] = True
                 dados["imoveis"][i]["ocupante"] = nome
 
-        with open(filename, "w") as f:
+        with open(FILENAME, "w") as f:
             json.dump(dados, f, indent=4)
 
     def desocupar_imovel(self, id_imovel):
