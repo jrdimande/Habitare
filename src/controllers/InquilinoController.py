@@ -28,7 +28,6 @@ class InquilinoController:
 
 
     def desocupar_imovel(self, id_imovel):
-        filename = "imoveis.json"
         dados = load()
 
         for i in range(len(dados["imoveis"])):
@@ -36,7 +35,7 @@ class InquilinoController:
                 dados["imoveis"][i]["estado"] = False
                 dados["imoveis"][i]["ocupante"] = None
 
-        with open(filename, "w") as f:
+        with open(FILENAME, "w") as f:
             json.dump(dados, f, indent=4)
 
     def adicionar_inquilino(self, id, nome, contacto, data_de_entrada, id_imovel):
