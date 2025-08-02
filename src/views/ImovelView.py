@@ -128,6 +128,12 @@ def ImoveisView(parent):
 
     update_treeview()
 
-    botao_carregar = tk.Button(frame_form, text="Carregar", width=20, relief="ridge", command=update_treeview, bg=None,
+    def carregar():
+        for item in tree.get_children():
+            tree.delete(item)
+        update_treeview()
+
+
+    botao_carregar = tk.Button(frame_form, text="Carregar", width=20, relief="ridge", command=carregar, bg=None,
                                fg=None)
     botao_carregar.place(x=425, y=100)

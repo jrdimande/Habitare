@@ -3,10 +3,10 @@ from src.utils.idCreator import gerar_inq_id
 import src.storage.imovel_json as imo
 
 
-
 InquilinoController = InquilinoController()
-
 # Cria UI para área inquilinos
+
+
 def InquilinosView(parent):
     import tkinter as tk
     from tkinter import ttk
@@ -230,7 +230,11 @@ def InquilinosView(parent):
                 dados["inquilinos"][i]["imovel"]
             )
             inquilino = InquilinoController.inquilinos[i]
-            tree.insert("", "end", values=(inquilino.id, inquilino.nome, inquilino.contacto, inquilino.imovel, inquilino.data_de_entrada))
+            tree.insert("", "end", values=(inquilino.id,
+                                           inquilino.nome,
+                                           inquilino.contacto,
+                                           inquilino.imovel,
+                                           inquilino.data_de_entrada))
 
     # Chamada inicial para preencher a tabela ao abrir o app
     update_treeview()

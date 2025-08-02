@@ -15,7 +15,6 @@ class InquilinoController:
         self.inquilinos = []
 
 
-    @staticmethod
     def ocupar_imovel(self, id_imovel, nome):
         dados = load()
 
@@ -27,7 +26,7 @@ class InquilinoController:
         with open(FILENAME, "w") as f:
             json.dump(dados, f, indent=4)
 
-    @staticmethod
+
     def desocupar_imovel(self, id_imovel):
         filename = "imoveis.json"
         dados = load()
