@@ -1,6 +1,7 @@
 from src.controllers.ImovelController import ImovelController
 from src.utils.idCreator import gerar_imo_id
 
+
 ImovelController = ImovelController()
 
 def ImoveisView(parent):
@@ -32,7 +33,7 @@ def ImoveisView(parent):
             return
 
         id_imovel = gerar_imo_id()
-        ImovelController.adicionar_imovel(id_imovel, endereco, preco_float, tipo,estado=False)
+        ImovelController.adicionar_imovel(id_imovel, endereco, preco_float, tipo, estado=False)
         ultimo = ImovelController.imoveis[-1]
         estado = "Ocupado" if ultimo.estado else "Disponível"
         tree.insert("", "end", values=(ultimo.id, endereco, preco_float, tipo, estado))
@@ -87,7 +88,12 @@ def ImoveisView(parent):
     tipoEntry = tk.Entry(frame_form, width=40)
     tipoEntry.grid(row=2, column=1)
 
-    tk.Button(frame_form, text="Salvar", width=20, command=adicionar_imovel, bg="#2ECC71", fg="white").place(x=425, y=10)
+    tk.Button(frame_form, text="Salvar",
+              width=20,
+              command=adicionar_imovel,
+              bg="#2ECC71",
+              fg="white").place(x=425, y=10)
+    g
     tk.Button(frame_form, text="Cancelar", width=20, command=cancelar, bg="#7F8C8D", fg="white").place(x=425, y=60)
 
     # Tabela
@@ -133,7 +139,12 @@ def ImoveisView(parent):
             tree.delete(item)
         update_treeview()
 
-
-    botao_carregar = tk.Button(frame_form, text="Carregar", width=20, relief="ridge", command=carregar, bg=None,
+    botao_carregar = tk.Button(frame_form,
+                               text="Carregar",
+                               width=20,
+                               relief="ridge",
+                               command=carregar,
+                               bg=None,
                                fg=None)
+
     botao_carregar.place(x=425, y=100)
