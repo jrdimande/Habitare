@@ -5,7 +5,6 @@ from src.controllers.ImovelController import ImovelController
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILENAME = os.path.join(BASE_DIR, "storage", "imoveis.json")
 
-
 def dump(controller: ImovelController):
     """Salvar dados em arquivo json"""
     os.makedirs(os.path.dirname(FILENAME), exist_ok=True)
