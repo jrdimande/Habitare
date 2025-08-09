@@ -93,7 +93,7 @@ def ImoveisView(parent):
               command=adicionar_imovel,
               bg="#2ECC71",
               fg="white").place(x=425, y=10)
-    g
+
     tk.Button(frame_form, text="Cancelar", width=20, command=cancelar, bg="#7F8C8D", fg="white").place(x=425, y=60)
 
     # Tabela
